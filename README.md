@@ -1,8 +1,5 @@
 # todo-app
 My Todo list app for the Odin Project
 
-MODULES
-
-- Dom control
-- Lists generator
-- todo itens generator
+Photo by <a href="https://unsplash.com/@schmidy?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Austin Schmid</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  
