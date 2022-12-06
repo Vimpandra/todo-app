@@ -1,8 +1,8 @@
-function TodoItem(title, desc, prio, due) {
+function TodoItem(title, desc, due, prio) {
     this.title = title;
     this.desc = desc;
-    this.prio = prio;
     this.due = due;
+    this.prio = prio;
 };
 
 TodoItem.prototype.addToList = function(list) {
