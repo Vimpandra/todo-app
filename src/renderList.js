@@ -4,6 +4,7 @@ function renderList(list) {
     const content = document.getElementById(`content`);
 
     const listBody = document.createElement(`div`);
+    listBody.setAttribute(`id`, list.title);
     content.appendChild(listBody);
     listBody.classList.add(`listCard`);
 
@@ -33,17 +34,23 @@ function renderList(list) {
         const listItem = document.createElement(`div`);
         listItem.classList.add(`listItem`);
         listItem.classList.add(`minimized`);
+        if (list.list[i].done) {
+            listItem.classList.add(`checked`);
+        };
         listContent.appendChild(listItem);
         listItem.setAttribute(`data-index`, i);
 
         const checkBox = document.createElement(`input`);
         checkBox.setAttribute(`type`, `checkbox`);
         listItem.appendChild(checkBox);
+        if (list.list[i].done) { checkBox.checked = true };
         checkBox.addEventListener(`input`, () => {
             if (checkBox.checked) {
                 listItem.classList.add(`checked`);
+                list.list[i].done = true;
             } else {
                 listItem.classList.remove(`checked`);
+                list.list[i].done = false;
             };
         });
 
@@ -270,7 +277,8 @@ function renderAddListItem(container, list) {
         if (iptTitle.value == ``) return
         else {
             list.newItem(iptTitle.value, iptDesc.value, iptDue.value, checkPrio());
-            content.textContent = null;
+            const listBody = document.getElementById(list.title);
+            listBody.remove();
             renderList(list);
         }
     });

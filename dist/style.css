@@ -60,11 +60,46 @@ header .logo {
     font-size: 0.8rem;
 }
 
+/* New List Window */
+.newListWindow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--color-background);
+    box-shadow: 0 0 6px 4000px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    border-radius: 8px;
+    gap: 1rem;
+    text-align: center;
+}
+.newListWindow h2 {
+    color: var(--color-darkest);
+    font-weight: 400;
+    font-size: 1rem;
+}
+.newListWindow input {
+    padding: 0.4rem;
+    border-radius: 4px;
+    border: 1px solid var(--color-darkest);
+}
+.newListWindow button {
+    border: none;
+    background-color: var(--color-darkest);
+    color: var(--color-background);
+    padding: 0.4rem;
+}
+
 /* List Cards */
 #content {
     padding: 1rem;
     display: flex;
     flex-wrap: wrap;
+    gap: 1rem;
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 
 .listCard {
