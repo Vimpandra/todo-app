@@ -34,10 +34,18 @@ function renderList(list) {
         listItem.classList.add(`listItem`);
         listItem.classList.add(`minimized`);
         listContent.appendChild(listItem);
+        listItem.setAttribute(`data-index`, i);
 
         const checkBox = document.createElement(`input`);
         checkBox.setAttribute(`type`, `checkbox`);
         listItem.appendChild(checkBox);
+        checkBox.addEventListener(`input`, () => {
+            if (checkBox.checked) {
+                listItem.classList.add(`checked`);
+            } else {
+                listItem.classList.remove(`checked`);
+            };
+        });
 
         const itemTitle = document.createElement(`h3`);
         itemTitle.textContent = list.list[i].title;
@@ -99,6 +107,11 @@ function renderList(list) {
         itemDelBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>`;
         listItem.appendChild(itemDelBtn);
         itemDelBtn.classList.add(`hidden`);
+        itemDelBtn.addEventListener(`click`, () => {
+            list.list.splice(i, 1);
+            content.textContent = null;
+            renderList(list);
+        });
     };
 
     const addItemBtn = document.createElement(`button`);
