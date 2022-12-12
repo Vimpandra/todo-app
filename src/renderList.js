@@ -92,17 +92,17 @@ function renderList(list) {
         listItem.appendChild(itemDesc);
         itemDesc.classList.add(`hidden`);
 
-        const itemPrio = document.createElement(`p`);
-        itemPrio.classList.add(`itemPrio`)
-        itemPrio.innerHTML = `Priority: <strong>${list.list[i].prio}</strong>`;
-        listItem.appendChild(itemPrio);
-        itemPrio.classList.add(`hidden`);
-
         const itemDue = document.createElement(`p`);
         itemDue.classList.add(`itemDue`);
         itemDue.textContent = `Due: ${list.list[i].due}`;
         listItem.appendChild(itemDue);
         itemDue.classList.add(`hidden`);
+
+        const itemPrio = document.createElement(`p`);
+        itemPrio.classList.add(`itemPrio`)
+        itemPrio.innerHTML = `Priority: <strong>${list.list[i].prio}</strong>`;
+        listItem.appendChild(itemPrio);
+        itemPrio.classList.add(`hidden`);
 
         const itemEditBtn = document.createElement(`div`);
         itemEditBtn.classList.add(`itemEditBtn`);
@@ -110,8 +110,73 @@ function renderList(list) {
         listItem.appendChild(itemEditBtn);
         itemEditBtn.classList.add(`hidden`);
         itemEditBtn.addEventListener(`click`, () => {
-            const editItemWindow = document.createElement(`div`);
-            
+            itemTitle.classList.add(`hidden`);
+            itemDesc.classList.add(`hidden`);
+            itemPrio.classList.add(`hidden`);
+            itemDue.classList.add(`hidden`);
+            itemEditBtn.classList.add(`hidden`);
+            itemDelBtn.classList.add(`hidden`);
+            itemExpandBtn.classList.add(`hidden`);
+            checkBox.classList.add(`hidden`);
+
+            const editWindow = document.createElement(`div`);
+            editWindow.classList.add(`editWindow`);
+            listItem.appendChild(editWindow);
+
+            const editTitleIpt = document.createElement(`input`);
+            editTitleIpt.setAttribute(`type`, `text`);
+            editTitleIpt.setAttribute(`placeholder`, list.list[i].title);
+            editWindow.appendChild(editTitleIpt);
+
+            const editDescIpt = document.createElement(`input`);
+            editDescIpt.setAttribute(`type`, `text`);
+            editDescIpt.setAttribute(`placeholder`, list.list[i].desc);
+            editWindow.appendChild(editDescIpt);
+
+            const editDueIpt = document.createElement(`input`);
+            editDueIpt.setAttribute(`type`, `text`);
+            editDueIpt.setAttribute(`placeholder`, list.list[i].due);
+            editWindow.appendChild(editDueIpt);
+
+            const exitEditModeBtn = document.createElement(`button`);
+            exitEditModeBtn.textContent = `Exit edit mode`;
+            editWindow.appendChild(exitEditModeBtn);
+            exitEditModeBtn.addEventListener(`click`, () => {
+                if (editTitleIpt.value !== ``) {
+                    list.list[i].title = editTitleIpt.value;
+                };
+                if (editDescIpt.value !== ``) {
+                    list.list[i].desc = editDescIpt.value;
+                };
+                if (editDueIpt.value !== ``) {
+                    list.list[i].due = editDueIpt.value;
+                };
+
+                itemTitle.textContent = list.list[i].title;
+                itemDesc.textContent = list.list[i].desc;
+                itemDue.textContent = list.list[i].due;
+
+                editWindow.remove();
+                itemTitle.classList.remove(`hidden`);
+                itemDesc.classList.remove(`hidden`);
+                itemPrio.classList.remove(`hidden`);
+                itemDue.classList.remove(`hidden`);
+                itemEditBtn.classList.remove(`hidden`);
+                itemDelBtn.classList.remove(`hidden`);
+                itemDelBtn.classList.remove(`hidden`);
+                itemExpandBtn.classList.remove(`hidden`);
+                checkBox.classList.remove(`hidden`);
+
+                function checkPrio() {
+                    if (iptPrioUrgent.checked) {
+                        return iptPrioUrgent.value;
+                    } else if (iptPrioAsap.checked) {
+                        return iptPrioAsap.value;
+                    } else if (iptPrioWhenever.checked) {
+                        return iptPrioWhenever.value;
+                    }
+                };
+            });
         });
 
         const itemDelBtn = document.createElement(`div`);
