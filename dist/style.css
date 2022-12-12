@@ -27,6 +27,7 @@ body {
     background-image: url(../images/austin-schmid-Mgd4WNAYeQ0-unsplash.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
     height: 100vh;
 }
 
@@ -36,6 +37,9 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: fixed;
+    width: 100vw;
+    top: 0;
 }
 header .logo {
     font-weight: bold;
@@ -94,7 +98,7 @@ header .logo {
 
 /* List Cards */
 #content {
-    padding: 1rem;
+    padding: 4rem 1rem 1rem 1rem;
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
