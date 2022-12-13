@@ -101,6 +101,13 @@ function renderList(list) {
         const itemPrio = document.createElement(`p`);
         itemPrio.classList.add(`itemPrio`)
         itemPrio.innerHTML = `Priority: <strong>${list.list[i].prio}</strong>`;
+        if (list.list[i].prio === `Urgent`) {
+            listItem.classList.add(`prioUrgent`);
+        } else if (list.list[i].prio === `ASAP`) {
+            listItem.classList.add(`prioAsap`);
+        } else if (list.list[i].prio === `Whenever`) {
+            listItem.classList.add(`prioWhenever`);
+        };
         listItem.appendChild(itemPrio);
         itemPrio.classList.add(`hidden`);
 
@@ -138,6 +145,70 @@ function renderList(list) {
             editDueIpt.setAttribute(`placeholder`, list.list[i].due);
             editWindow.appendChild(editDueIpt);
 
+            // Edit prio inputs
+            const editPrioContainer = document.createElement(`div`);
+            editPrioContainer.classList.add(`editPrioContainer`);
+            editWindow.appendChild(editPrioContainer);
+
+            // Urgent
+            const editUrgCont = document.createElement(`div`);
+            editPrioContainer.appendChild(editUrgCont);
+
+            const editPrioUrgent = document.createElement(`input`);
+            editPrioUrgent.setAttribute(`type`, `radio`);
+            editPrioUrgent.setAttribute(`id`, `editPrioUrgent`);
+            editPrioUrgent.setAttribute(`name`, `editPrio`);
+            editPrioUrgent.value = `Urgent`;
+            editUrgCont.appendChild(editPrioUrgent);
+            if (list.list[i].prio === `Urgent`) {
+                editPrioUrgent.checked = true;
+            };
+
+            const editPrioUrgentLabel = document.createElement(`label`);
+            editPrioUrgentLabel.setAttribute(`for`, `editPrioUrgent`);
+            editPrioUrgentLabel.textContent = `Urgent`;
+            editUrgCont.appendChild(editPrioUrgentLabel);
+
+            // ASAP
+            const editAsapCont = document.createElement(`div`);
+            editPrioContainer.appendChild(editAsapCont);
+
+            const editPrioAsap = document.createElement(`input`);
+            editPrioAsap.setAttribute(`type`, `radio`);
+            editPrioAsap.setAttribute(`id`, `editPrioAsap`);
+            editPrioAsap.setAttribute(`name`, `editPrio`);
+            editPrioAsap.value = `ASAP`;
+            editAsapCont.appendChild(editPrioAsap);
+            if (list.list[i].prio === `ASAP`) {
+                editPrioAsap.checked = true;
+            };
+
+            const editPrioAsapLabel = document.createElement(`label`);
+            editPrioAsapLabel.setAttribute(`for`, `editPrioAsap`);
+            editPrioAsapLabel.textContent = `ASAP`;
+            editAsapCont.appendChild(editPrioAsapLabel);
+
+            // Whenever
+            const editWheneverCont = document.createElement(`div`);
+            editPrioContainer.appendChild(editWheneverCont);
+
+            const editPrioWhenever = document.createElement(`input`);
+            editPrioWhenever.setAttribute(`type`, `radio`);
+            editPrioWhenever.setAttribute(`id`, `editPrioWhenever`);
+            editPrioWhenever.setAttribute(`name`, `editPrio`);
+            editPrioWhenever.value = `Whenever`;
+            editWheneverCont.appendChild(editPrioWhenever);
+            if (list.list[i].prio === `Whenever`) {
+                editPrioWhenever.checked = true;
+            };
+
+            const editPrioWhenLabel = document.createElement(`label`);
+            editPrioWhenLabel.setAttribute(`for`, `editPrioWhenever`);
+            editPrioWhenLabel.textContent = `Whenever`;
+            editWheneverCont.appendChild(editPrioWhenLabel);
+
+
+
             const exitEditModeBtn = document.createElement(`button`);
             exitEditModeBtn.textContent = `Exit edit mode`;
             editWindow.appendChild(exitEditModeBtn);
@@ -151,10 +222,27 @@ function renderList(list) {
                 if (editDueIpt.value !== ``) {
                     list.list[i].due = editDueIpt.value;
                 };
+                if (editPrioUrgent.checked) {
+                    list.list[i].prio = editPrioUrgent.value;
+                    listItem.classList.add(`prioUrgent`);
+                    listItem.classList.remove(`prioAsap`);
+                    listItem.classList.remove(`prioWhenever`);
+                } else if (editPrioAsap.checked) {
+                    list.list[i].prio = editPrioAsap.value;
+                    listItem.classList.remove(`prioUrgent`);
+                    listItem.classList.add(`prioAsap`);
+                    listItem.classList.remove(`prioWhenever`);
+                } else if (editPrioWhenever.checked) {
+                    list.list[i].prio = editPrioWhenever.value;
+                    listItem.classList.remove(`prioUrgent`);
+                    listItem.classList.remove(`prioAsap`);
+                    listItem.classList.add(`prioWhenever`);
+                };
 
                 itemTitle.textContent = list.list[i].title;
                 itemDesc.textContent = list.list[i].desc;
-                itemDue.textContent = list.list[i].due;
+                itemDue.textContent = `Due: ${list.list[i].due}`;
+                itemPrio.innerHTML = `Priority: <strong>${list.list[i].prio}</strong>`;
 
                 editWindow.remove();
                 itemTitle.classList.remove(`hidden`);
@@ -166,16 +254,6 @@ function renderList(list) {
                 itemDelBtn.classList.remove(`hidden`);
                 itemExpandBtn.classList.remove(`hidden`);
                 checkBox.classList.remove(`hidden`);
-
-                function checkPrio() {
-                    if (iptPrioUrgent.checked) {
-                        return iptPrioUrgent.value;
-                    } else if (iptPrioAsap.checked) {
-                        return iptPrioAsap.value;
-                    } else if (iptPrioWhenever.checked) {
-                        return iptPrioWhenever.value;
-                    }
-                };
             });
         });
 

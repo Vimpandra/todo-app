@@ -221,7 +221,6 @@ header .logo {
 
 .itemExpandBtn {
     border: none;
-    background-color: var(--color-background);
     color: var(--color-medium);
     font-size: 1.6rem;
     font-weight: 400;
@@ -335,6 +334,28 @@ header .logo {
 }
 
 .checked  h3 {
-    color: var(--color-light);
+    color: var(--color-medium);
     text-decoration: line-through;
+}
+
+.prioUrgent {
+    order: 1;
+    background-color: var(--color-highPrioBG);
+}
+.prioUrgent .itemExpandBtn {
+    background-color: var(--color-highPrioBG);
+}
+.prioAsap {
+    order: 2;
+    background-color: var(--color-mediumPrioBG);
+}
+.prioAsap .itemExpandBtn {
+    background-color: var(--color-mediumPrioBG);
+}
+.prioWhenever {
+    order: 3;
+    background-color: var(--color-lowPrioBG);
+}
+.prioWhenever .itemExpandBtn {
+    background-color: var(--color-lowPrioBG);
 }
