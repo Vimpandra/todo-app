@@ -130,6 +130,10 @@ function renderList(list) {
             editWindow.classList.add(`editWindow`);
             listItem.appendChild(editWindow);
 
+            const editModeTitle = document.createElement(`h3`);
+            editModeTitle.textContent = `Edit Mode`;
+            editWindow.appendChild(editModeTitle);
+
             const editTitleIpt = document.createElement(`input`);
             editTitleIpt.setAttribute(`type`, `text`);
             editTitleIpt.setAttribute(`placeholder`, list.list[i].title);
@@ -211,6 +215,7 @@ function renderList(list) {
 
             const exitEditModeBtn = document.createElement(`button`);
             exitEditModeBtn.textContent = `Exit edit mode`;
+            exitEditModeBtn.classList.add(`submitBtn`);
             editWindow.appendChild(exitEditModeBtn);
             exitEditModeBtn.addEventListener(`click`, () => {
                 if (editTitleIpt.value !== ``) {
@@ -444,7 +449,7 @@ function renderAddListItem(container, list) {
             renderList(list);
         }
     });
-}
+};
 
 function checkFill(ipt) {
     if (ipt.value.length == 0) {
