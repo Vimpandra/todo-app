@@ -414,6 +414,7 @@ function renderAddListItem(container, list) {
     const iptPrioWhenever = document.createElement(`input`);
     iptPrioWhenever.setAttribute(`type`, `radio`);
     iptPrioWhenever.setAttribute(`name`, `prio`);
+    iptPrioWhenever.checked = true;
     iptPrioWhenever.setAttribute(`id`, `iptPrioWhenever`);
     iptPrioWhenever.value = `Whenever`;
     wheneverContainer.appendChild(iptPrioWhenever);
