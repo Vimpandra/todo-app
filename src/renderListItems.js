@@ -23,9 +23,11 @@ function renderListItems(list) {
             if (checkBox.checked) {
                 listItem.classList.add(`checked`);
                 list.list[i].done = true;
+                setLocalStorage();
             } else {
                 listItem.classList.remove(`checked`);
                 list.list[i].done = false;
+                setLocalStorage();
             };
         });
 

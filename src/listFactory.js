@@ -5,8 +5,8 @@ function TodoList(title) {
     this.list = [];
 };
 
-TodoList.prototype.newItem = function(title, desc, due, prio) {
-    let item = new TodoItem(title, desc, due, prio);
+TodoList.prototype.newItem = function(title, desc, due, prio, done) {
+    let item = new TodoItem(title, desc, due, prio, done);
     item.addToList(this.list);
 };
 

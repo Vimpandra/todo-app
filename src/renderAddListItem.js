@@ -154,7 +154,7 @@ function renderAddListItem(container, list) {
     submitBtn.addEventListener(`click`, () => {
         if (iptTitle.value == ``) return
         else {
-            list.newItem(iptTitle.value, iptDesc.value, iptDue.value, checkPrio());
+            list.newItem(iptTitle.value, iptDesc.value, iptDue.value, checkPrio(), false);
             const listBody = document.getElementById(list.title);
             listBody.remove();
             renderList(list);

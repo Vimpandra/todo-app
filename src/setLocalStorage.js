@@ -19,9 +19,9 @@ function setLocalStorage() {
             localStorage.setItem(`list${i}Item${e}Prio`, listItems[e].getElementsByClassName(`itemPrio`)[0].textContent.slice(10));
             
             if (listItems[e].getElementsByClassName(`itemDone`)[0].checked) {
-                localStorage.setItem(`item${e}Done`, true);
+                localStorage.setItem(`list${i}Item${e}Done`, `true`);
             } else {
-                localStorage.setItem(`item${e}Done`, false);
+                localStorage.setItem(`list${i}Item${e}Done`, `false`);
             }
         } 
     }
