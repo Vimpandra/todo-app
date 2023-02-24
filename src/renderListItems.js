@@ -2,6 +2,7 @@ import { setLocalStorage } from "./setLocalStorage";
 
 function renderListItems(list) {
     let listContent = document.getElementById(`${list.title} content`);
+    listContent.textContent = null;
     // Loop that renders each item on the list
     for (let i = 0; i < list.list.length; i++) {
         

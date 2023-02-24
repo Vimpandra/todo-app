@@ -1,4 +1,4 @@
-import { renderList } from "./renderList";
+import { renderListItems } from "./renderListItems";
 import { setLocalStorage } from "./setLocalStorage";
 
 function renderAddListItem(container, list) {
@@ -152,12 +152,19 @@ function renderAddListItem(container, list) {
     };
 
     submitBtn.addEventListener(`click`, () => {
-        if (iptTitle.value == ``) return
-        else {
+        let addItemBtn = document.getElementById(`${list.title} addItemBtn`);
+        let delListBtn = document.getElementById(`${list.title} delListBtn`);
+        if (iptTitle.value == ``) {
+            newItemWindow.remove();
+            addItemBtn.classList.remove(`hidden`);
+            delListBtn.classList.remove(`hidden`);
+        } else {
             list.newItem(iptTitle.value, iptDesc.value, iptDue.value, checkPrio(), false);
-            const listBody = document.getElementById(list.title);
-            listBody.remove();
-            renderList(list);
+            renderListItems(list);
+            newItemWindow.remove();        
+            addItemBtn.classList.remove(`hidden`);
+            delListBtn.classList.remove(`hidden`);
+
             setLocalStorage();
         }
     });
