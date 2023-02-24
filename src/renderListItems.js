@@ -1,7 +1,10 @@
+import { setLocalStorage } from "./setLocalStorage";
+
 function renderListItems(list) {
     let listContent = document.getElementById(`${list.title} content`);
     // Loop that renders each item on the list
     for (let i = 0; i < list.list.length; i++) {
+        
         const listItem = document.createElement(`div`);
         listItem.classList.add(`listItem`);
         listItem.classList.add(`minimized`);
@@ -13,6 +16,7 @@ function renderListItems(list) {
 
         const checkBox = document.createElement(`input`);
         checkBox.setAttribute(`type`, `checkbox`);
+        checkBox.classList.add(`itemDone`);
         listItem.appendChild(checkBox);
         if (list.list[i].done) { checkBox.checked = true };
         checkBox.addEventListener(`input`, () => {
@@ -26,6 +30,7 @@ function renderListItems(list) {
         });
 
         const itemTitle = document.createElement(`h3`);
+        itemTitle.classList.add(`itemTitle`);
         itemTitle.textContent = list.list[i].title;
         listItem.appendChild(itemTitle);
         itemTitle.addEventListener(`click`, () => {
@@ -231,6 +236,8 @@ function renderListItems(list) {
                 itemDelBtn.classList.remove(`hidden`);
                 itemExpandBtn.classList.remove(`hidden`);
                 checkBox.classList.remove(`hidden`);
+
+                setLocalStorage();
             });
         });
 
@@ -242,6 +249,7 @@ function renderListItems(list) {
         itemDelBtn.addEventListener(`click`, () => {
             list.list.splice(i, 1);
             listItem.remove();
+            setLocalStorage();
         });
     };
 }

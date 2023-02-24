@@ -1,5 +1,6 @@
 import { renderList } from "./renderList";
 import { TodoList } from "./listFactory";
+import { setLocalStorage } from "./setLocalStorage";
 
 function renderNewList() {
     const newListBtn = document.getElementById(`newListBtn`);
@@ -29,6 +30,7 @@ function renderNewList() {
             const newList = new TodoList(iptTitle.value);
             renderList(newList);
             newListWindow.remove();
+            setLocalStorage();
         });
     });
 };

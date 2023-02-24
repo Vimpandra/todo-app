@@ -1,8 +1,10 @@
 import { TodoList } from "./listFactory";
 import { renderListItems } from "./renderListItems";
 import { renderAddListItem } from "./renderAddListItem";
+import { setLocalStorage } from "./setLocalStorage";
 
 function renderList(list) {
+
     const content = document.getElementById(`content`);
 
     const listBody = document.createElement(`div`);
@@ -12,6 +14,7 @@ function renderList(list) {
 
     const listTitle = document.createElement(`h2`);
     listTitle.textContent = list.title;
+    listTitle.classList.add(`listTitle`);
     listBody.appendChild(listTitle);
 
     const listExpandBtn = document.createElement(`button`);
@@ -46,6 +49,7 @@ function renderList(list) {
     delListBtn.addEventListener(`click`, () => {
         if (confirm(`Are you sure you want to delete ${list.title} and all it's content?`)) {
             listBody.remove();
+            setLocalStorage();
         }
     });
 

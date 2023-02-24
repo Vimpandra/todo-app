@@ -1,4 +1,5 @@
 import { renderList } from "./renderList";
+import { setLocalStorage } from "./setLocalStorage";
 
 function renderAddListItem(container, list) {
     const newItemWindow = document.createElement(`div`);
@@ -157,6 +158,7 @@ function renderAddListItem(container, list) {
             const listBody = document.getElementById(list.title);
             listBody.remove();
             renderList(list);
+            setLocalStorage();
         }
     });
 };
